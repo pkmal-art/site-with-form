@@ -1,20 +1,34 @@
+'use client';
 import styled from 'styled-components';
 
 const ContactButton = styled.button`
-  margin: 0;
-  margin-right: 46px;
-  font-size: 16px;
-  background: #2c2c2c;
-  color: white;
-  padding: 7px 16px;
-  width: 178px;
-  border-radius: 9px;
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 28px;
   border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    opacity: 0.9;
+    background: var(--accent);
+    transform: scale(1.05);
+    color: var(--primary);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(100, 100, 255, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 `;
 
 export default ContactButton;
+

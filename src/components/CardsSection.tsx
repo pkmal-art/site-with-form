@@ -1,39 +1,49 @@
-import React from 'react';
+'use client';
 import styled from 'styled-components';
 import Card from './Card';
 import ContactButton from './ContactButton';
 import Link from 'next/link';
 
 const CardsSectionWrapper = styled.section`
-  padding: 55px 40px 40px 40px;
+  padding: 80px 40px 60px;
+  background: #fafafa;
+
+  @media (max-width: 768px) {
+    padding: 40px 32px;
+  }
+
 `;
 
 const TitleCardsSection = styled.h2`
-  margin: 0;
-  margin-bottom: 40px;
   text-align: center;
-  font-size: 44px;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 60px;
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
-    margin: 40px 0 20px;
+    font-size: 1.75rem;
+    margin-bottom: 30px;
   }
 `;
 
 const CardsGrid = styled.div`
   display: grid;
-  padding: 66px 24px;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 107px 65px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  padding-bottom: 50px;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
 
-  @media (max-width: 680px) {
-    padding: 0 20px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  
-  @media (max-width: 480px) {
-    grid-template-columns: repeat(1, 1fr);
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 `;
 
