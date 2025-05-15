@@ -1,5 +1,5 @@
 'use client';
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from 'yup';
@@ -115,6 +115,18 @@ const Error = styled.span`
   margin-top: 4px;
 `;
 
+const Message = styled.div`
+  display: flex;
+  min-height: 80vh;  
+  background: #fefefe;
+  color: var(--primary);
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+`;
+
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -128,6 +140,8 @@ type FormData = {
 };
 
 export default function ContactForm() {
+  const [submittedMessage, setSubmittedMessage] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -136,36 +150,64 @@ export default function ContactForm() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+  try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.name) {
+        setSubmittedMessage(`Thank you for your interest, ${result.name}!`);
+      } else {
+        console.error('Server error:', result);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+    }
   };
 
   return (
-    <Wrapper>
-      <Title>Only CTA on the page</Title>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Field>
-          <Label htmlFor="name">Name</Label>
-          <Input id="name" {...register('name')} />
-          {errors.name && <Error>{errors.name.message}</Error>}
-        </Field>
+      <>
+      {submittedMessage ? (
+        <Message>
+          <p>
+            {submittedMessage}
+          </p>
+        </Message>
 
-        <Field>
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" {...register('email')} />
-          {errors.email && <Error>{errors.email.message}</Error>}
-        </Field>
+      ) : (
+        <Wrapper>    
+          <Title>Only CTA on the page</Title>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <Field>
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" {...register('name')} />
+              {errors.name && <Error>{errors.name.message}</Error>}
+            </Field>
 
-        <Field>
-          <Label htmlFor="message">Message</Label>
-          <Textarea id="message" {...register('message')} />
-          {errors.message && <Error>{errors.message.message}</Error>}
-        </Field>
+            <Field>
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" {...register('email')} />
+              {errors.email && <Error>{errors.email.message}</Error>}
+            </Field>
 
-        <Submit type="submit">Send Message</Submit>
-      </Form>
-    </Wrapper>
+            <Field>
+              <Label htmlFor="message">Message</Label>
+              <Textarea id="message" {...register('message')} />
+              {errors.message && <Error>{errors.message.message}</Error>}
+            </Field>
+
+            <Submit type="submit">Send Message</Submit>
+          </Form>
+        </Wrapper>
+      )}
+    </>
   );
 }
+
 
 
