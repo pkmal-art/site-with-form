@@ -32,24 +32,3 @@ const ContactButton = styled.button`
 
 export default ContactButton;
 
-
-// import styled from 'styled-components';
-
-// const ContactButton = styled.button`
-//   background: var(--primary);
-//   color: #fff;
-//   border: none;
-//   padding: 10px 24px;
-//   border-radius: 24px;
-//   font-weight: 500;
-//   transition: all 0.3s ease;
-//   cursor: pointer;
-
-//   &:hover {
-//     background: var(--accent);
-//     transform: scale(1.05);
-//     color: var(--primary);
-//   }
-// `;
-
-// export default ContactButton;
