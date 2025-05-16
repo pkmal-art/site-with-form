@@ -1,40 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Some Company – Лендинг и форма обратной связи
 
-## Getting Started
+Современный адаптивный лендинг с формой обратной связи, разработанный с использованием **Next.js**, **TypeScript**, **Material UI** и **styled-components**. Оптимизирован по требованиям SEO, доступности и производительности.
 
-First, run the development server:
+---
+
+##  Технологии
+
+- **Фреймворк**: [Next.js](https://nextjs.org/)
+- **Язык**: TypeScript
+- **UI-библиотека**: [Material UI (MUI)](https://mui.com/)
+- **Стилизация**: styled-components (CSS-in-JS)
+- **Формы**: react-hook-form + yup
+- **Управление Head и мета-тегами**: next/head
+- **Видео**: react-lite-youtube-embed (облегчённая загрузка YouTube)
+
+---
+
+##  Быстрый старт
+
+###  Требования
+- Node.js 18+
+- npm или yarn
+
+###  Установка
+
+```bash
+npm install
+```
+
+###  Запуск в режиме разработки
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Приложение будет доступно по адресу [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+##  Особенности стилизации
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+Используется `styled-components` — современный способ написания CSS прямо в компонентах.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Основные моменты:
+- Полностью адаптивная вёрстка
+- Анимации появления (`fadeIn`, `fadeSlideIn`)
+- Кастомные стили для состояний `:hover`, `:focus`
+- Переходы и тени при наведении (для карточек и кнопок)
 
-## Learn More
+###  Необычные/современные приёмы CSS
 
-To learn more about Next.js, take a look at the following resources:
+- Облегчённая загрузка YouTube-видео с помощью **react-lite-youtube-embed** — iframe загружается только при взаимодействии. Это значительно улучшает **Core Web Vitals** (особенно LCP и FID).
+- Кнопки и карточки используют **скейл-эффекты при наведении и нажатии**, увеличивая интерактивность без ущерба для доступности.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+##  SEO и производительность
 
-## Deploy on Vercel
+Следуем лучшим практикам SEO:
+- Уникальные `<title>` и `<meta description>` на каждой странице
+- Канонические ссылки (`<link rel="canonical" />`)
+- Правильная иерархия заголовков (`h1`, `h2`, `h3`)
+- Мета-теги `robots`, `viewport`, `charset`
+- Поддержка мета-тегов для соцсетей
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+###  Теги для предпросмотра в соцсетях (Open Graph / Twitter)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Добавлены в `<Head>` каждой страницы:
+
+```html
+<!-- Open Graph -->
+<meta property="og:title" content="Some Company" />
+<meta property="og:description" content="Свяжитесь с нами через форму обратной связи." />
+<meta property="og:type" content="website" />
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Some Company" />
+<meta name="twitter:description" content="Контактная форма для связи" />
+
+```
+
+---
+
+##  Доступность 
+
+- Семантическая HTML-структура (`<section>`, `<article>`, `<form>`, `<header>`, `<footer>`)
+- Метки и `aria`-совместимые ошибки валидации форм
+- Навигация с клавиатуры
+- Видимый фокус и высокая контрастность элементов
+
+---
+
+##  Что реализовано
+
+-  Типизированный код (TypeScript)
+-  Адаптивная вёрстка
+-  Валидация форм в реальном времени
+-  Анимации и интерактивные состояния
+-  SEO и доступность на каждой странице
+-  Поддержка соцсетей (OG + Twitter)
+-  Высокая производительность (легкие компоненты, lazy load)
+
+
+---
+
+## Автор
+
+Разработано pkmal. Проект открыт для использования как шаблон или основа для других лендингов.
+
+---
