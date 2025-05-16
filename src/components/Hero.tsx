@@ -10,7 +10,7 @@ const HeroWrapper = styled.section`
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  padding: 33px 48px;
+  padding: 60px 48px;
   background: linear-gradient(135deg, #ffffff 0%, #b9cbde 100%);
   border-bottom: 1px solid #ddd;
 
@@ -91,7 +91,7 @@ export default function Hero() {
       <HeroText>
         <h1>Most important title on the page</h1>
         <p>
-          We help ambitious businesses thrive through smart design, modern technology, and a tailored experience. Let us show you how.
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis, leo et condimentum ultricies, sem urna convallis metus, vel suscipit nibh lacus tincidunt ante
         </p>
       </HeroText>
       <HeroVideo>
