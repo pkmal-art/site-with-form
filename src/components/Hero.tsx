@@ -26,7 +26,7 @@ const HeroText = styled.div`
   animation: fadeSlideIn 0.7s ease both;
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.7rem;
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 24px;
