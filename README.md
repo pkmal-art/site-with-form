@@ -1,10 +1,14 @@
+![Some Company Preview](public/prewie.png)
+
 # Some Company – Лендинг и форма обратной связи
 
 Современный адаптивный лендинг с формой обратной связи, разработанный с использованием **Next.js**, **TypeScript**, **Material UI** и **styled-components**. Оптимизирован по требованиям SEO, доступности и производительности.
 
+Демо: [http://84.201.151.82/](http://84.201.151.82/)
+
 ---
 
-##  Технологии
+## Технологии
 
 - **Фреймворк**: [Next.js](https://nextjs.org/)
 - **Язык**: TypeScript
@@ -12,20 +16,22 @@
 - **Стилизация**: styled-components (CSS-in-JS)
 - **Формы**: react-hook-form + yup
 - **Управление Head и мета-тегами**: next/head
-- **Видео**: react-lite-youtube-embed (облегчённая загрузка YouTube)
+- **Видео**: react-lite-youtube-embed
+- **Сервер**: Yandex Cloud VM + Nginx + systemd
 
 ---
 
-##  Быстрый старт
+## Быстрый старт
 
-###  Требования
+### Требования
 - Node.js 18+
 - npm или yarn
 
-###  Установка
+### Установка
 
 ```bash
 npm install
+
 ```
 
 ###  Запуск в режиме разработки
@@ -58,27 +64,11 @@ npm run dev
 ##  SEO и производительность
 
 Следуем лучшим практикам SEO:
-- Уникальные `<title>` и `<meta description>` на каждой странице
+- На каждой странице задаётся уникальный <title> и <meta name="description">, описывающий содержимое страницы.
 - Канонические ссылки (`<link rel="canonical" />`)
 - Правильная иерархия заголовков (`h1`, `h2`, `h3`)
 - Мета-теги `robots`, `viewport`, `charset`
 - Поддержка мета-тегов для соцсетей
-
-###  Теги для предпросмотра в соцсетях (Open Graph / Twitter)
-
-Добавлены в `<Head>` каждой страницы:
-
-```html
-<!-- Open Graph -->
-<meta property="og:title" content="Some Company" />
-<meta property="og:description" content="Свяжитесь с нами через форму обратной связи." />
-<meta property="og:type" content="website" />
-
-<!-- Twitter Cards -->
-<meta name="twitter:title" content="Some Company" />
-<meta name="twitter:description" content="Контактная форма для связи" />
-
-```
 
 ---
 
@@ -98,14 +88,12 @@ npm run dev
 -  Валидация форм в реальном времени
 -  Анимации и интерактивные состояния
 -  SEO и доступность на каждой странице
--  Поддержка соцсетей (OG + Twitter)
 -  Высокая производительность (легкие компоненты, lazy load)
-
 
 ---
 
 ## Автор
 
-Разработано pkmal. Проект открыт для использования как шаблон или основа для других лендингов.
+Разработано pkmal.
 
 ---

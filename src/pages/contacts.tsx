@@ -10,12 +10,20 @@ export default function ContactPage() {
         <title>Some Company</title>
         <meta
           name="description"
-          content="Get in touch with us through our contact form. We’re here to help you with any inquiries or support you need."
+          content="Форма обратной связи"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://yourdomain.com/" />
+        <link rel="canonical" href="http://84.201.151.82/contacts" />
         <meta name="robots" content="index, follow" />
         <meta charSet="utf-8" />
+
+        <meta property="og:title" content="Some Company" />
+        <meta property="og:description" content="Форма обратной связи" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://84.201.151.82/contacts" />
+
+        <meta name="twitter:title" content="Some Company" />
+        <meta name="twitter:description" content="Форма обратной связи" />
         <html lang="en" />
       </Head>
       <ContactForm />
