@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from 'yup';
 import styled from "styled-components";
+import { TextField, Button } from '@mui/material';
 
-const Wrapper = styled.section`
+const FormWrapper = styled.section`
   background: #fefefe;
   padding: 80px 20px;
   display: flex;
@@ -13,7 +14,7 @@ const Wrapper = styled.section`
   align-items: center;
 `;
 
-const Title = styled.h1`
+const FormTitle = styled.h1`
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--primary);
@@ -25,7 +26,7 @@ const Title = styled.h1`
   }
 `;
 
-const Form = styled.form`
+const FormStyled = styled.form`
   background: #fff;
   padding: 32px;
   border-radius: 16px;
@@ -37,87 +38,55 @@ const Form = styled.form`
   gap: 24px;
 `;
 
-const Field = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #444;
-  margin-bottom: 6px;
-`;
-
-const Input = styled.input`
-  padding: 12px 14px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  transition: 0.3s ease;
-
-  &:hover {
-    border-color: #999;
+const StyledTextField = styled(TextField)`
+  & label {
+    font-size: 0.95rem;
+    color: #444;
   }
 
-  &:focus {
-    border-color: var(--primary);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(100, 100, 255, 0.1);
+  & .MuiInputBase-root {
+    border-radius: 20px;
+    background-color: #fff;
+  }
+
+  & .MuiOutlinedInput-root {
+    &:hover fieldset {
+      border-color: #999;
+    }
+
+    &.Mui-focused fieldset {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(100, 100, 255, 0.1);
+    }
   }
 `;
 
-const Textarea = styled.textarea`
-  padding: 12px 14px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  resize: vertical;
-  min-height: 120px;
-  transition: 0.3s ease;
+const Submit = styled(Button)`
+  && {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 20px;
+    text-transform: none;
+    transition: all 0.3s ease;
 
-  &:hover {
-    border-color: #999;
+    &:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: scale(1.03);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
   }
-
-  &:focus {
-    border-color: var(--primary);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(100, 100, 255, 0.1);
-  }
-`;
-
-const Submit = styled.button`
-  background: var(--primary);
-  color: #fff;
-  font-weight: 600;
-  padding: 14px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: var(--accent);
-    color: var(--primary);
-    transform: scale(1.03);
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-`;
-
-const Error = styled.span`
-  color: #d00;
-  font-size: 0.75rem;
-  margin-top: 4px;
 `;
 
 const Message = styled.div`
   display: flex;
-  min-height: 80vh;  
+  min-height: 80vh;
   background: #fefefe;
   color: var(--primary);
   align-items: center;
@@ -151,7 +120,7 @@ export default function ContactForm() {
   });
 
   const onSubmit = async (data: FormData) => {
-  try {
+    try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -170,44 +139,43 @@ export default function ContactForm() {
     }
   };
 
-  return (
-      <>
-      {submittedMessage ? (
-        <Message>
-          <p>
-            {submittedMessage}
-          </p>
-        </Message>
-
-      ) : (
-        <Wrapper>    
-          <Title>Only CTA on the page</Title>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <Field>
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" {...register('name')} />
-              {errors.name && <Error>{errors.name.message}</Error>}
-            </Field>
-
-            <Field>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" {...register('email')} />
-              {errors.email && <Error>{errors.email.message}</Error>}
-            </Field>
-
-            <Field>
-              <Label htmlFor="message">Message</Label>
-              <Textarea id="message" {...register('message')} />
-              {errors.message && <Error>{errors.message.message}</Error>}
-            </Field>
-
-            <Submit type="submit">Send Message</Submit>
-          </Form>
-        </Wrapper>
-      )}
-    </>
+  return submittedMessage ? (
+    <Message>
+      <p>{submittedMessage}</p>
+    </Message>
+  ) : (
+    <FormWrapper>
+      <FormTitle>Only CTA on the page</FormTitle>
+      <FormStyled onSubmit={handleSubmit(onSubmit)} noValidate>
+        <StyledTextField
+          label="Name"
+          variant="outlined"
+          fullWidth
+          error={!!errors.name}
+          helperText={errors.name?.message}
+          {...register('name')}
+        />
+        <StyledTextField
+          label="Email"
+          type="email"
+          variant="outlined"
+          fullWidth
+          error={!!errors.email}
+          helperText={errors.email?.message}
+          {...register('email')}
+        />
+        <StyledTextField
+          label="Message"
+          variant="outlined"
+          fullWidth
+          multiline
+          rows={5}
+          error={!!errors.message}
+          helperText={errors.message?.message}
+          {...register('message')}
+        />
+        <Submit type="submit" variant="contained">Send Message</Submit>
+      </FormStyled>
+    </FormWrapper>
   );
 }
-
-
-
